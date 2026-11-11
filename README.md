@@ -1,0 +1,1 @@
+# nextit-2026-seminar
