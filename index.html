@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NextIT 2026 클라우드 보안 세미나 신청 페이지">
+  <title>NextIT 2026 | 클라우드로 옮기기 전에, 보안부터</title>
+  <style>
+    :root {
+      --navy: #142b4a;
+      --blue: #2864dc;
+      --blue-dark: #1d4fb5;
+      --sky: #eaf2ff;
+      --ink: #1d2939;
+      --muted: #667085;
+      --line: #dce3ed;
+      --bg: #f5f7fb;
+      --white: #fff;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Noto Sans KR", "Malgun Gothic", sans-serif;
+      line-height: 1.6;
+    }
+    .notice {
+      padding: 9px 16px;
+      background: #fff2cc;
+      color: #714d00;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -.01em;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 58px 22px 62px;
+      color: white;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(92, 156, 255, .38), transparent 28%),
+        linear-gradient(130deg, #102542 0%, #183e70 58%, #2864a6 100%);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      right: -110px;
+      bottom: -220px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 50%;
+      box-shadow: 0 0 0 35px rgba(255,255,255,.035), 0 0 0 75px rgba(255,255,255,.025);
+    }
+    .hero-inner, .container { width: min(100% - 40px, 900px); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: #c9ddff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      background: #8bb8ff;
+    }
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(31px, 6vw, 54px);
+      line-height: 1.22;
+      letter-spacing: -.055em;
+      word-break: keep-all;
+    }
+    .hero-copy {
+      max-width: 640px;
+      margin: 20px 0 0;
+      color: #e1ebfb;
+      font-size: clamp(15px, 2.3vw, 18px);
+      word-break: keep-all;
+    }
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    .meta-chip {
+      padding: 8px 13px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      background: rgba(255,255,255,.09);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 650;
+    }
+    main { padding: 34px 0 70px; }
+    .intro {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      margin-bottom: 24px;
+    }
+    .intro-card, .form-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 8px 28px rgba(20, 43, 74, .045);
+    }
+    .intro-card { padding: 25px 26px; }
+    .intro-card h2, .form-heading h2 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: 20px;
+      letter-spacing: -.035em;
+    }
+    .intro-card p {
+      margin: 0;
+      color: #526174;
+      font-size: 14px;
+      word-break: keep-all;
+    }
+    .topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 17px;
+    }
+    .topic {
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: var(--sky);
+      color: #2455a6;
+      font-size: 12px;
+      font-weight: 750;
+    }
+    .schedule {
+      display: grid;
+      gap: 12px;
+      align-content: center;
+      padding: 24px 25px;
+      border-radius: var(--radius);
+      background: #eaf1fb;
+    }
+    .schedule-row { display: flex; gap: 13px; align-items: flex-start; }
+    .schedule-label {
+      flex: 0 0 72px;
+      color: #667b99;
+      font-size: 12px;
+      font-weight: 750;
+    }
+    .schedule-value { color: var(--navy); font-size: 14px; font-weight: 750; }
+    .form-card { padding: 30px; }
+    .form-heading { margin-bottom: 24px; }
+    .form-heading p { margin: 0; color: var(--muted); font-size: 13px; }
+    .required-note { margin-top: 8px !important; color: #7b8798 !important; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 19px 18px;
+    }
+    .field { min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+    label, legend {
+      display: block;
+      margin-bottom: 7px;
+      color: #26364b;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .required { color: #d04444; }
+    input, select {
+      width: 100%;
+      min-height: 48px;
+      padding: 11px 13px;
+      border: 1px solid #cfd8e5;
+      border-radius: 10px;
+      outline: none;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 14px;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    input::placeholder { color: #a0aab8; }
+    input:focus, select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(40,100,220,.12);
+    }
+    fieldset {
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    .choice-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+    .choice {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 42px;
+      padding: 8px 11px;
+      border: 1px solid #d7dfeb;
+      border-radius: 9px;
+      background: #fff;
+      color: #48576b;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .choice input {
+      width: 15px;
+      min-height: 15px;
+      height: 15px;
+      margin: 0;
+      accent-color: var(--blue);
+    }
+    .privacy {
+      margin: 22px 0 18px;
+      padding: 13px 15px;
+      border-radius: 10px;
+      background: #f6f8fb;
+      color: #68778b;
+      font-size: 12px;
+      word-break: keep-all;
+    }
+    .submit-btn {
+      width: 100%;
+      min-height: 54px;
+      border: 0;
+      border-radius: 11px;
+      background: var(--blue);
+      color: white;
+      font: inherit;
+      font-size: 16px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: background .15s, transform .15s;
+    }
+    .submit-btn:hover { background: var(--blue-dark); }
+    .submit-btn:active { transform: translateY(1px); }
+    .success {
+      display: none;
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid #b9dfc7;
+      border-radius: 12px;
+      background: #effaf2;
+      color: #176b37;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 750;
+    }
+    .success.show { display: block; }
+    footer {
+      padding: 23px 20px;
+      border-top: 1px solid var(--line);
+      color: #8792a2;
+      text-align: center;
+      font-size: 12px;
+    }
+    @media (max-width: 680px) {
+      .hero { padding: 43px 0 48px; }
+      .hero-inner, .container { width: min(100% - 32px, 900px); }
+      .intro { grid-template-columns: 1fr; gap: 14px; }
+      .intro-card, .schedule { padding: 21px; }
+      .form-card { padding: 23px 18px; }
+      .form-grid { grid-template-columns: 1fr; gap: 16px; }
+      .field.full { grid-column: auto; }
+      .event-meta { gap: 7px; }
+      .meta-chip { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="notice">교육용 예시 페이지입니다</div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>클라우드로 옮기기 전에,<br>보안부터</h1>
+      <p class="hero-copy">
+        클라우드 전환을 준비하고 있다면 시스템 이전뿐 아니라 보안 환경에 대한 사전 점검도 중요합니다.
+        전환 과정에서 고려해야 할 보안 위협과 실무 점검 항목을 함께 살펴보세요.
+      </p>
+      <div class="event-meta" aria-label="행사 정보">
+        <span class="meta-chip">11월 19일(목) 오후 2시</span>
+        <span class="meta-chip">온라인 라이브 · 90분</span>
+        <span class="meta-chip">무료 세미나</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="intro" aria-label="행사 안내">
+        <div class="intro-card">
+          <h2>전환 전, 무엇을 점검해야 할까요?</h2>
+          <p>
+            클라우드 보안 위협부터 데이터 보호와 접근 권한, 보안 적용 방안까지
+            전환 전에 확인해야 할 주요 내용을 소개합니다.
+          </p>
+          <div class="topics">
+            <span class="topic">클라우드 보안 위협</span>
+            <span class="topic">전환 전 보안 점검</span>
+            <span class="topic">보안 적용 방안</span>
+            <span class="topic">솔루션 소개</span>
+          </div>
+        </div>
+        <div class="schedule">
+          <div class="schedule-row">
+            <span class="schedule-label">일시</span>
+            <span class="schedule-value">2026년 11월 19일(목)<br>14:00–15:30</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-label">진행</span>
+            <span class="schedule-value">온라인 라이브</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-label">참가비</span>
+            <span class="schedule-value">무료</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-label">주최</span>
+            <span class="schedule-value">이테크시스템</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-card" aria-labelledby="form-title">
+        <div class="form-heading">
+          <h2 id="form-title">세미나 신청하기</h2>
+          <p>아래 정보를 입력해 주세요. 입력한 내용은 이 예시 페이지에서 전송되지 않습니다.</p>
+          <p class="required-note"><span class="required">*</span> 표시는 필수 입력 항목입니다.</p>
+        </div>
+
+        <form id="registrationForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">이름 <span class="required">*</span></label>
+              <input id="name" name="name" type="text" placeholder="이름을 입력해 주세요" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="company">회사명 <span class="required">*</span></label>
+              <input id="company" name="company" type="text" placeholder="회사명을 입력해 주세요" autocomplete="organization" required>
+            </div>
+            <div class="field">
+              <label for="department">부서와 직무 <span class="required">*</span></label>
+              <input id="department" name="department" type="text" placeholder="예: IT운영팀 / 보안 담당" required>
+            </div>
+            <div class="field">
+              <label for="email">업무용 이메일 <span class="required">*</span></label>
+              <input id="email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required>
+            </div>
+            <fieldset class="field full">
+              <legend>관심 분야 <span class="required">*</span> <span style="font-weight:500;color:#7b8798;">(복수 선택 가능)</span></legend>
+              <div class="choice-list">
+                <label class="choice"><input type="checkbox" name="interest" value="클라우드 전환">클라우드 전환</label>
+                <label class="choice"><input type="checkbox" name="interest" value="클라우드 보안">클라우드 보안</label>
+                <label class="choice"><input type="checkbox" name="interest" value="데이터 보호">데이터 보호</label>
+                <label class="choice"><input type="checkbox" name="interest" value="접근 권한 관리">접근 권한 관리</label>
+                <label class="choice"><input type="checkbox" name="interest" value="보안 솔루션">보안 솔루션</label>
+              </div>
+            </fieldset>
+            <div class="field full">
+              <label for="timing">도입 검토 시기 <span class="required">*</span></label>
+              <select id="timing" name="timing" required>
+                <option value="">선택해 주세요</option>
+                <option value="3개월 이내">3개월 이내</option>
+                <option value="6개월 이내">6개월 이내</option>
+                <option value="1년 이내">1년 이내</option>
+                <option value="시기 미정">시기 미정</option>
+                <option value="도입 계획 없음">도입 계획 없음</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="privacy">
+            ※ 교육용 예시 화면입니다. 실제 개인정보 수집·이용 동의 및 전송 기능은 구현되어 있지 않으며,
+            입력한 정보는 서버로 전송되거나 저장되지 않습니다.
+          </div>
+
+          <button class="submit-btn" type="submit">무료 세미나 신청하기</button>
+          <div class="success" id="successMessage" role="status" aria-live="polite">
+            신청이 완료되었습니다. 관심 가져주셔서 감사합니다!<br>
+            <span style="font-weight:500;">※ 교육용 예시 페이지로, 실제 신청 정보는 전송되지 않았습니다.</span>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>© 2026 ETECH SYSTEM · NEXTIT 2026</footer>
+
+  <script>
+    const form = document.getElementById("registrationForm");
+    const successMessage = document.getElementById("successMessage");
+    const interestBoxes = form.querySelectorAll('input[name="interest"]');
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const hasInterest = Array.from(interestBoxes).some((box) => box.checked);
+      if (!hasInterest) {
+        alert("관심 분야를 하나 이상 선택해 주세요.");
+        interestBoxes[0].focus();
+        return;
+      }
+
+      successMessage.classList.add("show");
+      successMessage.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      form.querySelector(".submit-btn").textContent = "신청 확인 완료";
+      form.querySelector(".submit-btn").disabled = true;
+      form.querySelector(".submit-btn").style.opacity = ".7";
+    });
+  </script>
+</body>
+</html>
